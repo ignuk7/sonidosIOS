@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
+    
+    var reproductor: AVAudioPlayer!
 
+    @IBAction func sonidoPulsado(_ sender: UIButton) {
+        print("boton pulsado!")
+        reproductor.play()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let rutaAlArchivo:NSURL = Bundle.main.url(forResource: "CorrePlatano",withExtension: "wav")! as NSURL
+        do{
+            try reproductor = AVAudioPlayer(contentsOf: rutaAlArchivo as URL)
+        }catch{}
     }
 
     override func didReceiveMemoryWarning() {
